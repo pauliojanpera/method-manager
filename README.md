@@ -4,7 +4,7 @@ a platform-agnostic zero-dependency mixin class for enabling/disabling EcmaScrip
 
 # Usage
 
-```
+```javascript
 class MyComponent {
   greet() {
     return 'hello';
