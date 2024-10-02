@@ -1,6 +1,6 @@
 # method-manager
 
-a platform-agnostic zero-dependency mixin class for enabling/disabling methods dynamically
+a platform-agnostic zero-dependency mixin class for enabling/disabling EcmaScript/Typescript object methods dynamically
 
 # Usage
 
