@@ -8,7 +8,7 @@ export class MethodManager<T> {
       [P in keyof T]: T[P] extends (...args: any[]) => any ? P : never;
     },
   ): void {
-    (this as any)[method] = undefined;
+    (this as unknown as T)[method] = undefined;
   }
 
   /**
@@ -20,7 +20,7 @@ export class MethodManager<T> {
       [P in keyof T]: T[P] extends (...args: any[]) => any ? P : never;
     },
   ): void {
-    delete (this as any)[method];
+    delete (this as unknown as T)[method];
   }
 
   static mixin<T>(targetClass: new () => T) {
