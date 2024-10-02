@@ -1,4 +1,4 @@
-export class MethodManager<T> {
+export class MethodManager<T extends Object> {
   /**
    * Disables a method in the prototype by setting a property of the same name to "undefined" in the object instance.
    */
@@ -8,7 +8,20 @@ export class MethodManager<T> {
       [P in keyof T]: T[P] extends (...args: any[]) => any ? P : never;
     },
   ): void {
-    (this as unknown as T)[method] = undefined;
+    const self = this as unknown as T;
+
+    const prototype = Object.getPrototypeOf(self);
+    if (typeof prototype[method] !== "function")
+      throw new Error(`The method does not exist: ${String(method)}`);
+
+    if (Object.prototype.hasOwnProperty.call(self, method))
+      if (self[method] !== undefined)
+        throw new Error(
+          `The mask already exists and doesn't even equal undefined: ${String(method)} === ${String(self[method])}`,
+        );
+      else throw new Error(`The mask already exists: ${String(method)}`);
+
+    self[method] = undefined;
   }
 
   /**
@@ -20,7 +33,22 @@ export class MethodManager<T> {
       [P in keyof T]: T[P] extends (...args: any[]) => any ? P : never;
     },
   ): void {
-    delete (this as unknown as T)[method];
+    const self = this as unknown as T;
+
+    const prototype = Object.getPrototypeOf(self);
+
+    if (typeof prototype[method] !== "function")
+      throw new Error(`The method does not exist: ${String(method)}`);
+
+    if (!Object.prototype.hasOwnProperty.call(self, method))
+      throw new Error(`The mask does not exist: ${String(method)}`);
+
+    if (self[method] !== undefined)
+      throw new Error(
+        `The mask does not equal undefined: ${String(method)} === ${String(self[method])}`,
+      );
+
+    delete self[method];
   }
 
   static mixin<T>(targetClass: new () => T) {
