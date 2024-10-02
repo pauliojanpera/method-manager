@@ -13,11 +13,11 @@ class MyComponent {
   }
 
   init() {
-    this.methodManager.enable("myResettableSingleShotMethod");
+    this.methodManager.enableMethod("myResettableSingleShotMethod");
   }
 
   async myResettableSingleShotMethod() {
-    this.methodManager.disable("myResettableSingleShotMethod");
+    this.methodManager.disableMethod("myResettableSingleShotMethod");
     return "myResettableSingleShotMethod executed";
   }
 }

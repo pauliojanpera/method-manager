@@ -2,7 +2,7 @@ export class MethodManager<T> {
   /**
    * Disables a method in the prototype by setting a property of the same name to "undefined" in the object instance.
    */
-  disable(
+  disableMethod(
     method: keyof {
       // eslint-disable-next-line no-unused-vars
       [P in keyof T]: T[P] extends (...args: any[]) => any ? P : never;
@@ -14,7 +14,7 @@ export class MethodManager<T> {
   /**
    * Enables a method by removing its "undefined" masking property to reveal the method in the prototype.
    */
-  enable(
+  enableMethod(
     method: keyof {
       // eslint-disable-next-line no-unused-vars
       [P in keyof T]: T[P] extends (...args: any[]) => any ? P : never;

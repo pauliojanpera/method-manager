@@ -10,14 +10,14 @@ class MyComponent {
     return 'hello';
   }
 }
-// Insert MethodManager into MyComponent. All this does is add the enable() and disable() methods into MyComponent.prototype.
+// Insert MethodManager into MyComponent. All this does is add the enableMethod() and disableMethod() methods into MyComponent.prototype.
 MethodManager.mixin(MyComponent);
 
 const myComponent = new MyComponent();
 console.log(myComponent.greet?.()); // 'hello'
-myComponent.disable('greet');
+myComponent.disableMethod('greet');
 console.log(myComponent.greet?.()); // undefined
-myComponent.enable('greet');
+myComponent.enableMethod('greet');
 console.log(myComponent.greet?.()); // 'hello'
 ```
 See the `test/method-manager.test.js` for more elaborate usage.
