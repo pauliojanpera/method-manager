@@ -10,7 +10,8 @@ class MyComponent {
     return 'hello';
   }
 }
-// Insert MethodManager into MyComponent. All this does is add the enable() and disable() methods into MyComponent.prototype.
+// Insert MethodManager into MyComponent.
+// All this does is add the enable() and disable() methods into MyComponent.prototype.
 MethodManager.mixin(MyComponent);
 
 const myComponent = new MyComponent();
