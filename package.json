@@ -1,0 +1,49 @@
+{
+  "name": "method-manager",
+  "version": "1.0.0",
+  "description": "A platform-agnostic zero-dependency mixin class for enabling/disabling methods dynamically.",
+  "main": "dist/cjs/index.js",
+  "module": "dist/es/index.js",
+  "types": "dist/es/index.d.ts",
+  "type": "module",
+  "files": [
+    "dist/",
+    "src/"
+  ],
+  "scripts": {
+    "build": "tsc --project tsconfig.json && tsc --project tsconfig.cjs.json",
+    "test": "pnpm build && mocha test/**/*.test.js",
+    "prepare": "pnpm build",
+    "lint": "eslint",
+    "format": "prettier --write ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pauliojanpera/method-manager.git"
+  },
+  "keywords": [
+    "method",
+    "manager",
+    "enable",
+    "disable",
+    "javascript",
+    "typescript"
+  ],
+  "author": "Pauli Ojanperä",
+  "license": "MIT",
+  "devDependencies": {
+    "@eslint/js": "^9.11.1",
+    "@typescript-eslint/eslint-plugin": "^8.8.0",
+    "@typescript-eslint/parser": "^8.8.0",
+    "chai": "^5.1.1",
+    "eslint": "^9.11.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-functional": "^7.0.2",
+    "eslint-plugin-import": "^2.30.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "mocha": "^10.7.3",
+    "prettier": "^3.3.3",
+    "typescript": "^5.6.2",
+    "typescript-eslint": "^8.8.0"
+  }
+}

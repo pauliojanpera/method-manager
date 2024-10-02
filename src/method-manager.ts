@@ -1,0 +1,34 @@
+export class MethodManager<T> {
+  /**
+   * Disables a method in the prototype by setting a property of the same name to "undefined" in the object instance.
+   */
+  disable(
+    method: keyof {
+      // eslint-disable-next-line no-unused-vars
+      [P in keyof T]: T[P] extends (...args: any[]) => any ? P : never;
+    },
+  ): void {
+    (this as any)[method] = undefined;
+  }
+
+  /**
+   * Enables a method by removing its "undefined" masking property to reveal the method in the prototype.
+   */
+  enable(
+    method: keyof {
+      // eslint-disable-next-line no-unused-vars
+      [P in keyof T]: T[P] extends (...args: any[]) => any ? P : never;
+    },
+  ): void {
+    delete (this as any)[method];
+  }
+
+  static mixin<T>(targetClass: new () => T) {
+    const methods = Object.getOwnPropertyNames(MethodManager.prototype).filter(
+      (methodName) => methodName !== "constructor",
+    );
+
+    for (const methodName of methods)
+      targetClass.prototype[methodName] = MethodManager.prototype[methodName];
+  }
+}

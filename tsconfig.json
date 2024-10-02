@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "outDir": "dist/es",
+    "declaration": true,
+    "esModuleInterop": true,
+    "removeComments": true
+  },
+  "include": ["src/**/*"]
+}
